@@ -1,2 +1,2 @@
-* [English](docs/en/)
-* [Norwegian](docs/no/)
+* [English](en/)
+* [Norwegian](no/)
