@@ -20,6 +20,8 @@ $coding = @(
   [Package]@{Id = "Microsoft.GitCredentialManagerCore"}
   [Package]@{Id = "Docker.DockerDesktop"; RequiresAdmin = $true}
   [Package]@{Id = "OpenJS.NodeJS.LTS"}
+  [Package]@{Id = "Microsoft.dotnet"}
+  [Package]@{Id = "Python.Python.3"}
 
 )
 
@@ -49,8 +51,12 @@ $office = @(
   [Package]@{Id = "Microsoft.Office"}
   [Package]@{Id = "Google.Chrome"}
   [Package]@{Id = "Mozilla.Firefox"}
-  
 )
+
+$life = @(
+  [Package]@{Id = "Spotify.Spotify"}
+)
+
 
 $groups = @(
   [Group]@{Name = "Coding"; "Packages" = $coding}
@@ -59,6 +65,7 @@ $groups = @(
   [Group]@{Name = "Power Tools"; "Packages" = $powertools}
   [Group]@{Name = "DevOps"; "Packages" = $devops}
   [Group]@{Name = "Office"; "Packages" = $office}
+  [Group]@{Name = "Life"; "Packages" = $life}
 )
 
 function Get-Installed {
@@ -102,7 +109,7 @@ function Install-Package {
   if ( (Get-Installed -Package $Package.Id) -eq $true ) {
     Write-Host "$($Package.Id) is installed"
   } else {
-    if ( Get-UserDecision -Prompt $("Install $($Package.Id)" ) ) { 
+    if ( Get-UserDecision -Prompt $("Install $($Package.Id)?" ) ) { 
         
         Write-Host $("Installs $($Package.Id) ...") -ForegroundColor Green
 
@@ -133,7 +140,7 @@ function Install-Group {
     [Group]$Group
   )
 
-  if(Get-UserDecision -Prompt $("Install $($Group.Name) software?") -DefaultNo $true) {
+  if(Get-UserDecision -Prompt $("Install any $($Group.Name) software?") -DefaultNo $true) {
     foreach ($package in $Group.Packages) {
       Install-Package -Package $package -Interactive $Interactive
     }
@@ -141,6 +148,3 @@ function Install-Group {
 }
 
 $groups | ForEach-Object {Install-Group $_}
-
-
-
