@@ -17,10 +17,9 @@ $coding = @(
   [Package]@{Id = "Microsoft.VisualStudioCode"; Interactive = $true}
   [Package]@{Id = "Git.Git"}
   [Package]@{Id = "GitHub.GitHubDesktop"}
-  [Package]@{Id = "Microsoft.GitCredentialManagerCore"}
   [Package]@{Id = "Docker.DockerDesktop"; RequiresAdmin = $true}
   [Package]@{Id = "OpenJS.NodeJS.LTS"}
-  [Package]@{Id = "Microsoft.dotnet"}
+  [Package]@{Id = "Microsoft.dotnet"; Interactive = $true; RequiresAdmin = $true}
   [Package]@{Id = "Python.Python.3"}
 
 )
